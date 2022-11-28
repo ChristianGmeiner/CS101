@@ -54,7 +54,7 @@ while True:
     
                     
     # Computer chooses
-    computer.choice = random.choice(choices)
+    computer.choice = random.choice(choices[0:4])
 
     # Decides who won, displays results and increases score of wining player
     print(f"You chose {player.choice} and the computer chose {computer.choice}\n")
@@ -91,7 +91,7 @@ while True:
         player.win()
         print("You won!\n")
     else:
-        computer.display_results("You lost\n")
+        print("You lost\n")
         computer.win()
 
     display_score(player, computer)
