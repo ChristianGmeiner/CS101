@@ -2,47 +2,51 @@ import random
 import sys
 
 choices = ["rock", "paper", "scissors", "lizard", "spock"]
-
-def lost():
-    computer_score = 0
+computer_score = 0
+player_score = 0
+count = 0
+    
+def lost(computer_score):
     print("You lost!")
     computer_score += 1
-    print(computer_score)
+    return computer_score
 
 def draw():
     print("It´s a draw")
     
-def win():
-    player_score = 0
+def win(player_score):
     print("You Won!")
     player_score += 1
-    print(player_score)
+    return player_score
 
 def wrong():
     print("Please select a correct option")
     
-def again():
+def again(count):
     start = input("Do you want to play again? (y/n) ").lower()
     if start == "y":
-        game()
+        count += 1
+        game(count)
     elif start == "n":
         print("Goodbye")
         sys.exit(0)
     else:
         wrong()
     
-def start():
+def start(count = 0):
     while True:
         start = input("Do you want to play a game? (y/n) ").lower()
         if start == "y":
-            game()
+            count += 1
+            game(count)
         elif start == "n":
             print("Goodbye")
             sys.exit(0)
         else:
             wrong()
-                   
-def game():
+        return count   
+                
+def game(count):
     player = input("Select your choice - Rock, Paper, Scissors, Lizard, Spock ")
     computer = random.choice(choices)
     if player in choices: 
@@ -73,7 +77,7 @@ def game():
             lost()
     else:
         wrong()    
+    print(f"You won {player_score} out of {count} times")
     again()
           
-
 start()
